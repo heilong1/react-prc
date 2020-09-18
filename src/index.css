@@ -14,10 +14,12 @@ code {
 }
 
 .wrapper {
+  padding: 10px;
   margin: 3rem auto;
   width: 400px;
   border: rgb(57, 17, 122) 2px solid;
   border-radius: 10px;
+  background-color: rgb(249, 253, 196);
 }
 
 h1 {
