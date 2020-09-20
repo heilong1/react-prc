@@ -1,17 +1,28 @@
-import React from 'react';
-import TodoList from './todo/TodoList'
+import React from "react";
+import TodoList from "./todo/TodoList";
 
 function App() {
-const todos = [
-  {id: 1, complit: false, title: 'Купить хреб'},
-  {id: 2, complit: false, title: 'Купить молоке'},
-  {id: 3, complit: false, title: 'Купить яйцов'}
-]
+  let [todos, setTodos] = React.useState([
+    { id: 1, complit: false, title: "Купить хлеб" },
+    { id: 2, complit: false, title: "Купить молоко" },
+    { id: 3, complit: false, title: "Купить яйцо" },
+  ]);
+
+  function togTodo(id) {
+    setTodos(
+      (todos = todos.map((todo) => {
+        if (todo.id === id) {
+          todo.complit = !todo.complit;
+        }
+        return todo;
+      }))
+    );
+  }
 
   return (
     <div className="wrapper">
       <h1>React Practice</h1>
-      <TodoList todoso={todos}/>
+      <TodoList todoso={todos} onToggle={togTodo} />
     </div>
   );
 }

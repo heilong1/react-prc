@@ -1,8 +1,47 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
+// import { logDOM } from "@testing-library/react";
 
-export default function TodoItem({itemo}) {
-  return (
-  <li><strong>{itemo.id+' '}</strong>{itemo.title}</li>
-    
-  )
+const styles = {
+  li: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '.5rem 1rem',
+    border: '1px solid #ccc',
+    borderRadius: '6px',
+    marginBottom: '.5rem'
+  },
+  inpit: {
+    marginRight: '1rem'
+  }
 }
+
+function TodoItem({ itemo, chaCom }) {
+  const classes = []
+
+  if (itemo.complit) {
+    classes.push('done')
+  }
+
+  return (
+    <li style={styles.li}>
+      <span className={classes.join(' ')}>
+        <input type="checkbox" style={styles.inpit} 
+        onChange = { () => chaCom(itemo.id)}/>
+        <strong>{itemo.id}</strong>
+        &nbsp;
+        {itemo.title}
+      </span>
+
+      <button className="rm">&times;</button>
+    </li>
+  );
+}
+
+TodoItem.propTypes = {
+  itemo: PropTypes.object.isRequired,
+  chaCom: PropTypes.func.isRequired,
+};
+
+export default TodoItem;
