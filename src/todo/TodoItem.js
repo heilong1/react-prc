@@ -19,7 +19,7 @@ const styles = {
 };
 
 function TodoItem({ itemo, chaCom }) {
-  const { reTodo } = useContext(Context);
+  const { remTodo } = useContext(Context);
   const classes = [];
 
   if (itemo.complit) {
@@ -40,7 +40,7 @@ function TodoItem({ itemo, chaCom }) {
         {itemo.title}
       </span>
 
-      <button className="rm" onClick={reTodo.bind(null, itemo.id)}>
+      <button className="rm" onClick={remTodo.bind(null, itemo.id)}>
         &times;
       </button>
     </li>
