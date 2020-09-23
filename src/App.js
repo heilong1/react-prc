@@ -1,17 +1,16 @@
 import React from "react";
 import TodoList from "./todo/TodoList";
-import TodoReturner from './todo/TodoRet'
-// import AddTodo from './todo/addTodo'
-import Context from "./context"
+import TodoReturner from "./todo/TodoRet";
+import AddTodo from "./todo/addTodo";
+import Context from "./context";
 
 function App() {
-
-const todoMain = [
-  { id: 1, complit: false, title: "Купить хлеб" },
-  { id: 2, complit: false, title: "Купить молоко" },
-  { id: 3, complit: false, title: "Купить яйцо" },
-  { id: 4, complit: true, title: "Удали их все!" },
-]
+  const todoMain = [
+    { id: 1, complit: false, title: "Купить хлеб" },
+    { id: 2, complit: false, title: "Купить молоко" },
+    { id: 3, complit: false, title: "Купить яйцо" },
+    { id: 4, complit: true, title: "Удали их все!" },
+  ];
 
   let [todos, setTodos] = React.useState(todoMain);
 
@@ -27,27 +26,37 @@ const todoMain = [
   }
 
   function returnTodo() {
+    setTodos((todos = todoMain));
+  }
+
+  function addTo(title) {
     setTodos(
-      (todos = todoMain)
-    )
+      todos.concat([
+        {
+          id: todos.length + 1,
+          complit: false,
+          title,
+        },
+      ])
+    );
   }
 
   function remTodo(id) {
-    setTodos(todos.filter(todo => todo.id !== id))
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
 
   return (
-
-    <Context.Provider value={ {remTodo} }>
+    <Context.Provider value={{ remTodo }}>
       <div className="wrapper">
-      <h1>React Practice</h1>
-      {/* <AddTodo/> */}
-
-      {todos.length ? <TodoList todoso={todos} onToggle={togTodo} /> : <TodoReturner ret={returnTodo} />}
-    
-    </div>
+        <h1>React Practice</h1>
+        {todos.length ? (
+          <TodoList todoso={todos} onToggle={togTodo} />
+        ) : (
+          <TodoReturner ret={returnTodo} />
+        )}
+        <AddTodo addToo={addTo} />
+      </div>
     </Context.Provider>
-    
   );
 }
 

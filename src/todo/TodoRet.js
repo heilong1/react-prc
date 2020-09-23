@@ -6,8 +6,8 @@ function TodoReturner( {ret} ) {
 
   return (
     <span>
-      <p>Новых целей нет.</p>
-      <button onClick={ret}>Вернуть старые</button>
+      <p>Новых целей нет. <button onClick={ret}>Вернуть старые</button></p>
+      
     </span>
   )
 
