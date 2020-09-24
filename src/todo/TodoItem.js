@@ -33,7 +33,8 @@ function TodoItem({ itemo, chaCom }) {
           type="checkbox"
           style={styles.inpit}
           onChange={() => chaCom(itemo.id)}
-          checked={itemo.complit}
+          // ошибка при фетчинге, узнать
+          // checked={itemo.complit}
         />
         <strong>{itemo.id}</strong>
         &nbsp;
