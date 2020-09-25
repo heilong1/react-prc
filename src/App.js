@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
 import TodoList from "./todo/TodoList";
 import TodoReturner from "./todo/TodoRet";
-import AddTodo from "./todo/addTodo";
+// import AddTodo from "./todo/addTodo";
 import Context from "./context";
 // import Loader from "./loader";
+import Modal from './modal/modal';
+
+const AddTodol = React.lazy(() => new Promise((res) => {
+  setTimeout(() => {
+    res(import('./todo/addTodo'))
+  }, 3000)
+}))
 
 function App() {
   const todoMain = [
@@ -17,7 +24,7 @@ function App() {
   // const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=3")
       .then((response) => response.json())
       .then((todos) => {
         setTimeout(() => {
@@ -71,7 +78,11 @@ function App() {
           <TodoReturner ret={returnTodo} />
         )}
         {/* Кнопка добавления */}
-        <AddTodo addToo={addTo} />
+        {/* <AddTodo addToo={addTo} /> */}
+        <React.Suspense fallback={<p>Loading adtudu</p>}>
+        <AddTodol addToo={addTo} />
+        </React.Suspense>
+        <Modal></Modal>
       </div>
     </Context.Provider>
   );
@@ -89,4 +100,21 @@ export default App;
 3. Фетч с сервера засунуть в условие обнуления, и повторять каждый раз.
 Также засунуть в этот тернарный оператор доп компонент лоадинг картинки.
 
+Пройденные темы, закрепить.
+Компоненты стили циклы.
+jsx.
+proptypes.
+usestate.
+динамический класс - через массив и джоин.
+react context, usecontext.
+form.
+Хуки?
+Кастомные, развернуть набор опций тега.
+useeffect.
+loader.
+Rreact.suspense, lazy.
+modal.
+
+Идея проекта для практической отработки и гипотетической демонстрации
+на собеседовании: обдумывается.
 */
